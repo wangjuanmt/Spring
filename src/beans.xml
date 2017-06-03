@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd" >
+           <bean id="personDao" class="com.amuos.dao.impl.PersonDaoBean"></bean>
+           <bean id="personService" class="com.amuos.service.impl.PersonServiceBean">
+            <!-- 属性注入,使用ref,引用的是一个类，注入之后可以调用类里面的方法 -->
+           	<property name="personDao" ref="personDao"></property>
+           	<!-- 属性注入,使用value -->
+           	<property name="stringProperty" value="This is a string value."> </property>
+           	<!-- 属性注入:Set类型,List,Map同Set类似 -->
+           	<property name="sets">
+           		<set>
+           			<value>one</value>
+           			<value>two</value>
+           			<value>three</value>
+           		</set></property>
+           	<!-- 属性注入:List类型-->
+           	<property name="lists">
+           		<list>
+           			<value>1 Member of List</value>
+           			<value>2 Member of List</value>
+           			<value>3 Member of List</value>
+           		</list></property>
+           	<property name="properties">
+           		<props>
+           			<prop key="key1">value1</prop>
+           			<prop key="key2">value2</prop>
+           			<prop key="key3">value3</prop>
+           		</props></property>
+           	<property name="maps">
+           		<map>
+           			<entry key="key-1" value="value-1"></entry>
+           			<entry key="key-2" value="value-2"></entry>
+           			<entry key="key-3" value="value-3"></entry>
+           		</map></property>
+           </bean>
+           
+           
+           <!-- Setting for Instantiation using a constructor -->
+           <!--  bean id="personService" class="com.amuos.service.impl.PersonServiceBean" init-method="init" destroy-method="destroy"></bean>-->
+           <!-- scope="prototype" means every time get instance from spring is a new one -->
+           <!--  bean id="personService" class="com.amuos.service.impl.PersonServiceBean" scope="prototype"></bean>-->
+
+           <!-- Setting for Instantiation using a static factory method -->
+           <!-- bean id="personService2" class="com.amuos.service.impl.PersonServiceBeanFactory" factory-method="createPersonServiceBean"/> -->
+           <!-- Setting for Instantiation using an instance factory method -->
+           <!-- step1: the factory bean, which contains a method called createInstance() -->
+		   <!-- bean id="PersonServiceFactory" class="com.amuos.service.impl.PersonServiceBeanFactory"></bean> -->
+	       <!-- inject any dependencies required by this locator bean -->
+	       <!-- step2: the bean to be created via the factory bean -->
+	       <!-- bean id="personService3" factory-bean="PersonServiceFactory"  factory-method="createPersonServiceBean2" /> -->
+</beans>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:content="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd" >
+           <!-- 打开注解配置项 -->
+           <content:annotation-config/>
+           <!-- personDao_c1名称不匹配的话，会使用相关类型进行匹配，所以如果id写成personDao_c1也是可以装配成功的。 -->
+           <bean id="personDao_c1" class="com.amuos.dao.impl.PersonDaoBean_c1"></bean>
+           <bean id="personService_c1" class="com.amuos.service.impl.PersonServiceBean_c1">
+            <!-- 使用构造器注入
+           	<constructor-arg index="0" type="com.amuos.dao.PersonDao_c1" ref="personDao_c1"></constructor-arg>
+           	<constructor-arg index="1" value="This is a String value."></constructor-arg>
+           	 -->
+           </bean>
+          
+</beans>
